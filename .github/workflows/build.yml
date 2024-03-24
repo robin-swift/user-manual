@@ -1,0 +1,18 @@
+name: Build LaTeX document
+
+on: [push]
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile LaTeX document
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: em2_user_manual.tex
+      - uses: actions/upload-artifact@v4
+        with:
+          name: refman
+          path: ./em2_user_manual.pdf
